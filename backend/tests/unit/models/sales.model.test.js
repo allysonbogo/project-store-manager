@@ -7,20 +7,20 @@ const { sales } = require('./mocks/sales.model.mock');
 
 describe('Testes de unidade do model de vendas', function () {
   it('Recuperando a lista de vendas', async function () {
-    // Arrange
+    // arrange
     sinon.stub(connection, 'execute').resolves([sales]);
-    // Act
+    // act
     const result = await salesModel.findAll();
-    // Assert
+    // assert
     expect(result).to.be.deep.equal(sales);
   });
 
   it('Recuperando uma venda a partir do seu id', async function () {
-    // Arrange
+    // arrange
     sinon.stub(connection, 'execute').resolves([sales[2]]);
-    // Act
+    // act
     const result = await salesModel.findById(2);
-    // Assert
+    // assert
     expect(result).to.be.deep.equal(sales[2]);
   });
 

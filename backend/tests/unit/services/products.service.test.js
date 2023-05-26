@@ -43,6 +43,20 @@ describe('Teste de unidade do service de produtos', function () {
     });
   });
 
+  describe('Cadastrando um produto', function () {
+    it('retorna o ID do produto cadastrado', async function () {
+      // arrange
+      sinon.stub(productsModel, 'createProduct').resolves(1);
+      sinon.stub(productsModel, 'findById').resolves(products[0]);
+      
+      // act
+      const result = await productsService.createProduct(products[0].name);
+
+      // assert
+      expect(result.name).to.deep.equal(products[0].name);
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });
