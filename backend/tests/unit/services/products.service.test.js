@@ -43,7 +43,7 @@ describe('Teste de unidade do service de produtos', function () {
     });
   });
 
-  describe('Cadastrando um produto', function () {
+  describe('Cadastrando um novo produto', function () {
     it('retorna o ID do produto cadastrado', async function () {
       // arrange
       sinon.stub(productsModel, 'createProduct').resolves(1);
@@ -54,6 +54,14 @@ describe('Teste de unidade do service de produtos', function () {
 
       // assert
       expect(result.name).to.deep.equal(products[0].name);
+    });
+
+    it('retorna um erro ao passar um nome inválido', async function () {
+      // act
+      const result = await productsService.createProduct('test');
+
+      // assert
+      expect(result.message).to.equal('"name" length must be at least 5 characters long');
     });
   });
 

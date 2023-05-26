@@ -77,7 +77,7 @@ describe('Teste de unidade do controller de produtos', function () {
   });
 
   describe('Cadastrando um novo produto', function () {
-    it('ao enviar dados válidos deve salvar com sucesso!', async function () {
+    it('ao enviar dados válidos deve salvar com sucesso', async function () {
       // arrange
       const res = {};
       const req = {
@@ -96,6 +96,58 @@ describe('Teste de unidade do controller de produtos', function () {
       // assert
       expect(res.status).to.have.been.calledWith(201);
       expect(res.json).to.have.been.calledWith({ id: 1, name: 'Produto X' });
+    });
+
+    it('ao enviar um nome com menos de 5 caracteres deve retornar um erro', async function () {
+      // arrange
+      const res = {};
+      const req = {
+        body: {
+          name: 'test',
+        },
+      };
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon
+        .stub(productsService, 'createProduct')
+        .resolves({
+          message: '"name" length must be at least 5 characters long',
+        });
+
+      // act
+      await productsController.createProduct(req, res);
+
+      // assert
+      expect(res.status).to.have.been.calledWith(422);
+      expect(res.json).to.have.been.calledWith({
+        message: '"name" length must be at least 5 characters long',
+      });
+    });
+
+    it('ao não enviar um nome deve retornar um erro', async function () {
+      // arrange
+      const res = {};
+      const req = {
+        body: {},
+      };
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon
+        .stub(productsService, 'createProduct')
+        .resolves({
+          message: '"name" is required',
+        });
+
+      // act
+      await productsController.createProduct(req, res);
+
+      // assert
+      expect(res.status).to.have.been.calledWith(400);
+      expect(res.json).to.have.been.calledWith({
+        message: '"name" is required',
+      });
     });
   });
 
