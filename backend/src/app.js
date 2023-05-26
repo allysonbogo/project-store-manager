@@ -1,5 +1,5 @@
 const express = require('express');
-const { productsRouter } = require('./routers');
+const { productsRouter, salesRouter } = require('./routers');
 
 const app = express();
 
@@ -11,6 +11,7 @@ app.get('/', (_request, response) => {
 app.use(express.json());
 
 app.use('/products', productsRouter);
+app.use('/sales', salesRouter);
 
 app.get('/healthCheck', (req, res) => {
   res.status(200).json({ message: 'API no ar!!' });
