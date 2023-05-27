@@ -24,8 +24,6 @@ const findById = async (salesId) => {
       sp.product_id AS productId,
       sp.quantity
     FROM sales_products AS sp
-    INNER JOIN products AS p
-    ON sp.product_id = p.id
     INNER JOIN sales AS s
     ON sp.sale_id = s.id
     WHERE sp.sale_id = ?
@@ -35,4 +33,22 @@ const findById = async (salesId) => {
   return result;
 };
 
-module.exports = { findAll, findById };
+const createSaleId = async () => {
+  const [{ insertId }] = await connection.execute(
+    'INSERT INTO sales (date) VALUE (DATE(NOW()))',
+  );
+  return insertId;
+};
+
+const createSale = async (insertId, productId, quantity) => {
+  await connection.execute(
+    'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES(?, ?, ?)',
+    [insertId, productId, quantity],
+  );
+  return {
+    productId, 
+    quantity,
+  };
+};
+
+module.exports = { findAll, findById, createSaleId, createSale };

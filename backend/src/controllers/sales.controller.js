@@ -12,4 +12,10 @@ const findById = async (req, res) => {
   res.status(200).json(result);
 };
 
-module.exports = { findAll, findById };
+const createSale = async (req, res) => {
+  const sale = req.body;
+  const result = await salesService.createSale(sale);
+  res.status(201).json(result);
+};
+
+module.exports = { findAll, findById, createSale };
