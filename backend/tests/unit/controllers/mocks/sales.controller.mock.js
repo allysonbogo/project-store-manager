@@ -19,6 +19,25 @@ const sales = [
   },
 ];
 
+const newSale = {
+  id: 1,
+  itemsSold: [
+    {
+      productId: 1,
+      quantity: 1,
+    },
+  ],
+};
+
+const itemsSold = [
+  {
+    productId: 1,
+    quantity: 1,
+  },
+];
+
 module.exports = {
   sales,
+  newSale,
+  itemsSold,
 };

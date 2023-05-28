@@ -13,8 +13,9 @@ const findById = async (req, res) => {
 };
 
 const createSale = async (req, res) => {
-  const sale = req.body;
-  const result = await salesService.createSale(sale);
+  const product = req.body;
+  const result = await salesService.createSale(product);
+  if (result.message) return res.status(422).json(result);
   res.status(201).json(result);
 };
 

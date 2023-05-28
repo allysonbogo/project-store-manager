@@ -7,10 +7,10 @@ const validateName = (name) => {
   return { message: null };
 };
 
-const validateSale = (sale) => {
-  const { error } = saleSchema.validate(sale);
-  if (error) return { message: error.message };
-  
+const validateSale = (product) => {
+  const { error } = saleSchema.validate(product);
+  if (error) return { message: error.message.replace(/\[\d\]./, '') };
+
   return { message: null };
 };
 

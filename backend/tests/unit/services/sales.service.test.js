@@ -3,7 +3,7 @@ const sinon = require('sinon');
 const { salesService } = require('../../../src/services');
 const { salesModel } = require('../../../src/models');
 
-const { sales } = require('./mocks/sales.service.mock');
+const { sales, newSale, itemsSold, wrongItems } = require('./mocks/sales.service.mock');
 
 describe('Teste de unidade do service de vendas', function () {
   describe('Listando as vendas', function () {
@@ -40,6 +40,32 @@ describe('Teste de unidade do service de vendas', function () {
       
       // assert
       expect(result.message).to.equal('Sale not found');
+    });
+  });
+
+  describe('Cadastrando uma venda', function () {
+    it('deve responder com 200 e os dados da venda', async function () {
+      // arrange
+      sinon.stub(salesModel, 'createSaleId').resolves(1);
+      sinon.stub(salesModel, 'createSale').resolves(itemsSold[0]);
+      
+      // act
+      const result = await salesService.createSale(itemsSold);
+
+      // assert
+      expect(result).to.deep.equal(newSale);
+    });
+
+    it('deve responder com 404 ao não passar algum dado', async function () {
+      // arrange
+      sinon.stub(salesModel, 'createSaleId').resolves(1);
+      sinon.stub(salesModel, 'createSale').resolves(wrongItems[0]);
+      
+      // act
+      const result = await salesService.createSale(wrongItems);
+
+      // assert
+      expect(result.message).to.deep.equal('"quantity" is required');
     });
   });
 
