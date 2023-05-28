@@ -12,21 +12,6 @@ const findById = async (id) => {
   return result;
 };
 
-// const createSale = async (product) => {
-//   for (let index = 0; index < product.length; index += 1) {
-//     const error = schema.validateSale(product[index]);
-//     if (error.message) return error;
-//   }
-//   const saleId = await salesModel.createSaleId();
-//   const salePromisse = product.map((p) => salesModel.createSale(saleId, p.productId, p.quantity));
-//   const saleResult = await Promise.all(salePromisse);
-//   const object = {
-//     id: saleId,
-//     itemsSold: saleResult,
-//   };
-//   return object;
-// };
-
 const createSale = async (product) => {
   const error = schema.validateSale(product);
   if (error.message) return error;
