@@ -28,4 +28,6 @@ const updateProduct = async (name, productId) => {
   return updatedProduct;
 };
 
-module.exports = { findAll, findById, createProduct, updateProduct };
+const deleteProduct = async (productId) => productsModel.deleteProduct(productId);
+
+module.exports = { findAll, findById, createProduct, updateProduct, deleteProduct };

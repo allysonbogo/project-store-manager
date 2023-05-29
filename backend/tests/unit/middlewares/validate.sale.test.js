@@ -5,7 +5,7 @@ const sinonChai = require('sinon-chai');
 const { expect } = chai;
 chai.use(sinonChai);
 
-const validateNewSale = require('../../../src/middlewares/validateNewSale');
+const validateSale = require('../../../src/middlewares/validate.sale');
 
 describe('Testes de unidade do middleware de cadastro de vendas', function () {
   it('ao enviar dados válidos deve retornar com sucesso', async function () {
@@ -20,10 +20,10 @@ describe('Testes de unidade do middleware de cadastro de vendas', function () {
     const next = sinon.stub().returns();
 
     // act
-    await validateNewSale(req, res, next);
+    await validateSale(req, res, next);
 
     // assert
-    expect(validateNewSale).to.be.a('function');
+    expect(validateSale).to.be.a('function');
   });
 
   it('ao não enviar um id deve retornar um erro', async function () {
@@ -38,7 +38,7 @@ describe('Testes de unidade do middleware de cadastro de vendas', function () {
     res.json = sinon.stub().returns();
 
     // act
-    await validateNewSale(req, res, next);
+    await validateSale(req, res, next);
 
     // assert
     expect(res.status).to.have.been.calledWith(400);
@@ -57,7 +57,7 @@ describe('Testes de unidade do middleware de cadastro de vendas', function () {
     res.json = sinon.stub().returns();
 
     // act
-    await validateNewSale(req, res, next);
+    await validateSale(req, res, next);
 
     // assert
     expect(res.status).to.have.been.calledWith(400);
@@ -76,7 +76,7 @@ describe('Testes de unidade do middleware de cadastro de vendas', function () {
     res.json = sinon.stub().returns();
 
     // act
-    await validateNewSale(req, res, next);
+    await validateSale(req, res, next);
 
     // assert
     expect(res.status).to.have.been.calledWith(404);

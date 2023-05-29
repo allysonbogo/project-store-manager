@@ -5,7 +5,8 @@ const sinonChai = require('sinon-chai');
 const { expect } = chai;
 chai.use(sinonChai);
 
-const validateUpdateProduct = require('../../../src/middlewares/validateUpdateProduct');
+const validateProductName = require('../../../src/middlewares/validate.product.name');
+const validateProductId = require('../../../src/middlewares/validate.product.id');
 
 describe('Testes de unidade do middleware de atualização de produtos', function () {
   it('ao enviar dados válidos deve retornar com sucesso', async function () {
@@ -21,10 +22,12 @@ describe('Testes de unidade do middleware de atualização de produtos', functio
     const next = sinon.stub().returns();
 
     // act
-    await validateUpdateProduct(req, res, next);
+    await validateProductName(req, res, next);
+    await validateProductId(req, res, next);
 
     // assert
-    expect(validateUpdateProduct).to.be.a('function');
+    expect(validateProductName).to.be.a('function');
+    expect(validateProductId).to.be.a('function');
   });
 
   it('ao não enviar um nome deve retornar um erro', async function () {
@@ -40,7 +43,7 @@ describe('Testes de unidade do middleware de atualização de produtos', functio
     res.json = sinon.stub().returns();
 
     // act
-    await validateUpdateProduct(req, res, next);
+    await validateProductName(req, res, next);
 
     // assert
     expect(res.status).to.have.been.calledWith(400);
@@ -51,8 +54,8 @@ describe('Testes de unidade do middleware de atualização de produtos', functio
     // arrange
     const res = {};
     const req = {
-      params: 'x',
-      body: { name: 'Teste' },
+      params: { id: 9999 },
+      body: {},
     };
     const next = {};
 
@@ -60,7 +63,7 @@ describe('Testes de unidade do middleware de atualização de produtos', functio
     res.json = sinon.stub().returns();
 
     // act
-    await validateUpdateProduct(req, res, next);
+    await validateProductId(req, res, next);
 
     // assert
     expect(res.status).to.have.been.calledWith(404);

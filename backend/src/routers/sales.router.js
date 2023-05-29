@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { salesController } = require('../controllers');
-const validateNewSale = require('../middlewares/validateNewSale');
+const validateSale = require('../middlewares/validate.sale');
 
 const router = Router();
 
@@ -8,6 +8,6 @@ router.get('/', salesController.findAll);
 
 router.get('/:id', salesController.findById);
 
-router.post('/', validateNewSale, salesController.createSale);
+router.post('/', validateSale, salesController.createSale);
 
 module.exports = router;
