@@ -51,4 +51,9 @@ const createSale = async (insertId, productId, quantity) => {
   };
 };
 
-module.exports = { findAll, findById, createSaleId, createSale };
+const deleteSale = async (sale) => connection.execute(
+  'DELETE FROM sales WHERE id = ?',
+  [sale],
+);
+
+module.exports = { findAll, findById, createSaleId, createSale, deleteSale };

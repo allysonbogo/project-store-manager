@@ -3,7 +3,6 @@ const { productsModel } = require('../models');
 module.exports = async (req, res, next) => {
   const product = req.body;
   const products = await productsModel.findAll();
-  // const productsIds = Object.values(products).map((p) => p.id);
   const productsIds = products.map((p) => p.id);
 
   if (product.some((p) => !Object.keys(p)

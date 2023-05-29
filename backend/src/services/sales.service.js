@@ -25,4 +25,10 @@ const createSale = async (product) => {
   return object;
 };
 
-module.exports = { findAll, findById, createSale };
+const deleteSale = async (sale) => {
+  const result = await salesModel.findById(sale);
+  if (result.length === 0) return { message: 'Sale not found' };
+  return salesModel.deleteSale(sale);
+};
+
+module.exports = { findAll, findById, createSale, deleteSale };
