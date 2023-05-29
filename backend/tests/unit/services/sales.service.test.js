@@ -69,6 +69,57 @@ describe('Teste de unidade do service de vendas', function () {
     });
   });
 
+  describe('Deletando uma venda', function () {
+    it('deve deletar com sucesso', async function () {
+      // arrange
+      sinon.stub(salesModel, 'findById').resolves(sales[0]);
+      sinon.stub(salesModel, 'deleteSale').resolves();
+      
+      // act
+      const result = await salesService.deleteSale(1);
+
+      // assert
+      expect(result).to.deep.equal();
+    });
+
+    it('deve retornar um erro ao passar um id que não existe', async function () {
+      // arrange
+      sinon.stub(salesModel, 'deleteSale').resolves({ message: 'Sale not found' });
+      
+      // act
+      const result = await salesService.deleteSale(24);
+
+      // assert
+      expect(result.message).to.deep.equal('Sale not found');
+    });
+  });
+
+  describe('Atualizando uma venda', function () {
+    it('deve atualizar com sucesso', async function () {
+      // arrange
+      sinon.stub(salesModel, 'findProductInSale').resolves([sales[0]]);
+      sinon.stub(salesModel, 'updateSale').resolves();
+      
+      // act
+      const result = await salesService.updateSale(1, 1, 1);
+
+      // assert
+      expect(result).to.deep.equal(sales[0]);
+    });
+
+    it('deve retornar um erro ao passar uma quantidade inválida', async function () {
+      // arrange
+      sinon.stub(salesModel, 'findProductInSale').resolves(sales[0]);
+      sinon.stub(salesModel, 'updateSale').resolves();
+      
+      // act
+      const result = await salesService.updateSale(1, 1, 0);
+
+      // assert
+      expect(result.message).to.deep.equal('"quantity" must be greater than or equal to 1');
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });

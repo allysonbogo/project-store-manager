@@ -88,6 +88,19 @@ describe('Teste de unidade do service de produtos', function () {
     });
   });
 
+  describe('Deletando um produto', function () {
+    it('com sucesso', async function () {
+      // arrange
+      sinon.stub(productsModel, 'deleteProduct').resolves();
+      
+      // act
+      const result = await productsService.deleteProduct(products[0].id);
+
+      // assert
+      expect(result).to.equal();
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });

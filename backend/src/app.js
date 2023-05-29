@@ -13,8 +13,4 @@ app.use(express.json());
 app.use('/products', productsRouter);
 app.use('/sales', salesRouter);
 
-app.get('/healthCheck', (req, res) => {
-  res.status(200).json({ message: 'API no ar!!' });
-});
-
 module.exports = app;

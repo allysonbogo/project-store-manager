@@ -35,11 +35,38 @@ describe('Testes de unidade do model de vendas', function () {
 
   it('Cadastrando uma venda', async function () {
     // arrange
-    sinon.stub(connection, 'execute').resolves(newSale);
+    sinon.stub(connection, 'execute').resolves();
     // act
     const result = await salesModel.createSale(1, 1, 1);
     // assert
     expect([result]).to.be.deep.equal(newSale);
+  });
+
+  it('Deletando uma venda', async function () {
+    // arrange
+    sinon.stub(connection, 'execute').resolves();
+    // act
+    const result = await salesModel.deleteSale(1);
+    // assert
+    expect(result).to.be.deep.equal();
+  });
+
+  it('Recuperando um produto de uma venda', async function () {
+    // arrange
+    sinon.stub(connection, 'execute').resolves([sales[0]]);
+    // act
+    const result = await salesModel.findProductInSale(1, 1);
+    // assert
+    expect(result).to.be.deep.equal(sales[0]);
+  });
+
+  it('Atualizando uma venda', async function () {
+    // arrange
+    sinon.stub(connection, 'execute').resolves();
+    // act
+    const result = await salesModel.updateSale(1, 1, 1);
+    // assert
+    expect(result).to.be.deep.equal();
   });
 
   afterEach(function () {

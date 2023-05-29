@@ -31,4 +31,13 @@ const deleteSale = async (sale) => {
   return salesModel.deleteSale(sale);
 };
 
-module.exports = { findAll, findById, createSale, deleteSale };
+const updateSale = async (saleId, productId, quantity) => {
+  const error = schema.validateQuantity(quantity);
+  if (error.message) return error;
+
+  await salesModel.updateSale(saleId, productId, quantity);
+  const [updatedProduct] = await salesModel.findProductInSale(saleId, productId);
+  return updatedProduct;
+};
+
+module.exports = { findAll, findById, createSale, deleteSale, updateSale };

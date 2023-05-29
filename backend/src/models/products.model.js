@@ -24,9 +24,9 @@ const createProduct = async (product) => {
 };
 
 const updateProduct = async (name, productId) => connection.execute(
-    'UPDATE products SET name = ? WHERE id = ?',
-    [name, productId],
-  );
+  'UPDATE products SET name = ? WHERE id = ?',
+  [name, productId],
+);
 
 const deleteProduct = async (product) => connection.execute(
   'DELETE FROM products WHERE id = ?',

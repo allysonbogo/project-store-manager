@@ -225,6 +225,25 @@ describe('Teste de unidade do controller de produtos', function () {
     });
   });
 
+  describe('Deletando um produto', function () {
+    it('ao enviar um id válido deve deletar com sucesso', async function () {
+      const res = {};
+      const req = {
+        params: 1,
+      };
+
+      res.sendStatus = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon
+        .stub(productsService, 'deleteProduct')
+        .resolves();
+
+      await productsController.deleteProduct(req, res);
+
+      expect(res.sendStatus).to.have.been.calledWith(204);
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });

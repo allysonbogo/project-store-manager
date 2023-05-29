@@ -17,7 +17,7 @@ const findAll = async () => {
   return result;
 };
 
-const findById = async (salesId) => {
+const findById = async (saleId) => {
   const [result] = await connection.execute(
     `SELECT
       s.date,
@@ -28,7 +28,7 @@ const findById = async (salesId) => {
     ON sp.sale_id = s.id
     WHERE sp.sale_id = ?
     ORDER BY sale_id, product_id`,
-    [salesId],
+    [saleId],
   );
   return result;
 };
@@ -56,4 +56,33 @@ const deleteSale = async (sale) => connection.execute(
   [sale],
 );
 
-module.exports = { findAll, findById, createSaleId, createSale, deleteSale };
+const findProductInSale = async (saleId, productId) => {
+  const [result] = await connection.execute(
+    `SELECT
+      s.date,
+      sp.product_id AS productId,
+      sp.quantity,
+      sp.sale_id AS saleId
+    FROM sales_products AS sp
+    INNER JOIN sales AS s
+    ON sp.sale_id = s.id
+    WHERE sp.sale_id = ? AND product_id = ?`,
+    [saleId, productId],
+  );
+  return result;
+};
+
+const updateSale = async (saleId, productId, quantity) => connection.execute(
+  'UPDATE sales_products SET quantity = ? WHERE sale_id = ? AND product_id = ?',
+  [quantity, saleId, productId],
+);
+
+module.exports = {
+  findAll,
+  findById,
+  createSaleId,
+  createSale,
+  deleteSale,
+  findProductInSale,
+  updateSale,
+};

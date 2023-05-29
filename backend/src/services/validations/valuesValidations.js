@@ -1,4 +1,4 @@
-const { nameSchema, saleSchema } = require('./schemas');
+const { nameSchema, saleSchema, quantitySchema } = require('./schemas');
 
 const validateName = (name) => {
   const { error } = nameSchema.validate({ name });
@@ -14,7 +14,15 @@ const validateSale = (product) => {
   return { message: null };
 };
 
+const validateQuantity = (quantity) => {
+  const { error } = quantitySchema.validate({ quantity });
+  if (error) return { message: error.message };
+  
+  return { message: null };
+};
+
 module.exports = {
   validateName,
   validateSale,
+  validateQuantity,
 };
