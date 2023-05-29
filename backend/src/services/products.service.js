@@ -20,4 +20,12 @@ const createProduct = async (name) => {
   return newProduct;
 };
 
-module.exports = { findAll, findById, createProduct };
+const updateProduct = async (name, productId) => {
+  const error = schema.validateName(name);
+  if (error.message) return error;
+  await productsModel.updateProduct(name, productId);
+  const updatedProduct = await productsModel.findById(productId);
+  return updatedProduct;
+};
+
+module.exports = { findAll, findById, createProduct, updateProduct };

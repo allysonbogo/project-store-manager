@@ -97,6 +97,32 @@ describe('Teste de unidade do controller de vendas', function () {
       expect(res.status).to.have.been.calledWith(201);
       expect(res.json).to.have.been.calledWith(newSale);
     });
+
+    it('ao não enviar um id deve retornar um erro', async function () {
+      // arrange
+      const res = {};
+      const req = {
+        params: 1,
+        body: [{ quantity: 1 }],
+      };
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon
+        .stub(salesService, 'createSale')
+        .resolves({
+          message: '"productId" is required',
+        });
+
+      // act
+      await salesController.createSale(req, res);
+
+      // assert
+      expect(res.status).to.have.been.calledWith(422);
+      expect(res.json).to.have.been.calledWith({
+        message: '"productId" is required',
+      });
+    });
   });
 
   afterEach(function () {

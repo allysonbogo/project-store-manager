@@ -23,4 +23,9 @@ const createProduct = async (product) => {
   return insertId;
 };
 
-module.exports = { findAll, findById, createProduct };
+const updateProduct = async (name, productId) => connection.execute(
+    'UPDATE products SET name = ? WHERE id = ?',
+    [name, productId],
+  );
+
+module.exports = { findAll, findById, createProduct, updateProduct };

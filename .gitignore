@@ -295,3 +295,4 @@ reports
 
 # stryker temp files
 .stryker-tmp
+backend/tests/unit/middlewares/validateNewSale.test.js

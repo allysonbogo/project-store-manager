@@ -65,6 +65,29 @@ describe('Teste de unidade do service de produtos', function () {
     });
   });
 
+  describe('Atualizando um produto', function () {
+    it('retorna o produto cadastrado', async function () {
+      // arrange
+      sinon.stub(productsModel, 'updateProduct').resolves();
+      sinon.stub(productsModel, 'findById').resolves(products[0]);
+      
+      // act
+      const result = await productsService.updateProduct(products[0].name, products[0].id);
+
+      // assert
+      expect(result.id).to.deep.equal(products[0].id);
+      expect(result.name).to.deep.equal(products[0].name);
+    });
+
+    it('retorna um erro ao passar um nome inválido', async function () {
+      // act
+      const result = await productsService.updateProduct('test');
+
+      // assert
+      expect(result.message).to.equal('"name" length must be at least 5 characters long');
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });
