@@ -86,7 +86,7 @@ describe('Testes de unidade do middleware de atualização de vendas', function 
     const res = {};
     const req = {
       params: {
-        saleId: 1,
+        saleId: 9999,
         productId: 1,
       },
       body: { quantity: 1 },
