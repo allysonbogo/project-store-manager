@@ -40,4 +40,10 @@ const updateSale = async (saleId, productId, quantity) => {
   return updatedProduct;
 };
 
-module.exports = { findAll, findById, createSale, deleteSale, updateSale };
+module.exports = {
+  findAll,
+  findById,
+  createSale,
+  deleteSale,
+  updateSale,
+};

@@ -30,4 +30,16 @@ const updateProduct = async (name, productId) => {
 
 const deleteProduct = async (productId) => productsModel.deleteProduct(productId);
 
-module.exports = { findAll, findById, createProduct, updateProduct, deleteProduct };
+const findByName = async (name) => {
+  const result = await productsModel.findByName(name);
+  return result;
+};
+
+module.exports = {
+  findAll,
+  findById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  findByName,
+};

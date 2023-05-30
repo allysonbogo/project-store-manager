@@ -7,6 +7,8 @@ const router = Router();
 
 router.get('/', productsController.findAll);
 
+router.get('/search', productsController.findByName);
+
 router.get('/:id', productsController.findById);
 
 router.post('/', productsController.createProduct);

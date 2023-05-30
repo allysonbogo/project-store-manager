@@ -36,4 +36,10 @@ const updateSale = async (req, res) => {
   res.status(200).json(result);
 };
 
-module.exports = { findAll, findById, createSale, deleteSale, updateSale };
+module.exports = {
+  findAll,
+  findById,
+  createSale,
+  deleteSale,
+  updateSale,
+};

@@ -1,5 +1,7 @@
 const connection = require('./connection');
 
+// ? = prepared statement
+
 const findAll = async () => {
   const [result] = await connection.execute(
     'SELECT * FROM products',
@@ -33,4 +35,19 @@ const deleteProduct = async (product) => connection.execute(
   [product],
 );
 
-module.exports = { findAll, findById, createProduct, updateProduct, deleteProduct };
+const findByName = async (name) => {
+  const [result] = await connection.execute(
+    'SELECT * FROM products WHERE name LIKE ?',
+    [`${name}%`],
+  );
+  return result;
+};
+
+module.exports = {
+  findAll,
+  findById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  findByName,
+};
