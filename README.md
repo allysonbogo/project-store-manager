@@ -72,7 +72,7 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `GET` | Retorna uma lista de produtos cadastrados | http://localhost:3001/products
+| `GET` | Retorna uma lista de produtos cadastrados | `http://localhost:3001/products`
 
 <details>
   <summary> A resposta da requisição é a seguinte com status 200  </summary>
@@ -91,7 +91,7 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `GET` | Retorna um produto através do id | http://localhost:3001/products/:id
+| `GET` | Retorna um produto através do id | `http://localhost:3001/products/:id`
 
 <details>
   <summary> A resposta da requisição é a seguinte com status 200  </summary>
@@ -112,7 +112,7 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `POST` | Realiza o cadastro de um produto | http://localhost:3001/products
+| `POST` | Realiza o cadastro de um produto | `http://localhost:3001/products`
 
 <details>
   <summary> A estrutura do body da requisição deverá seguir o padrão abaixo: </summary>
@@ -137,15 +137,25 @@ npm run test:coverage
 
 <details>
   <summary> A requisição irá falhar nos seguintes casos: </summary>
-  - A rota retorna um erro <code>400</code> <code>{ "message": "\"name\" is required" }</code> ao tentar criar um produto sem o campo nome; <br>
-  - A rota retorna um erro <code>422</code> <code>{ "message": "\"name\" length must be at least 5 characters long" }</code> ao tentar criar um produto com nome com quantidade de caracteres inferior a 5; <br>
-  - A rota retorna um erro <code>422</code> <code>{ "message": "\"name\" must be a string" }</code> ao tentar criar um produto com nome que não seja uma string; <br>
+  - A rota retorna um erro <code>400</code> <code>{ "message": "\"name\" is required" }</code> ao tentar cadastrar um produto sem o campo nome; <br>
+  - A rota retorna um erro <code>422</code> <code>{ "message": "\"name\" length must be at least 5 characters long" }</code> ao tentar cadastrar um produto com nome com quantidade de caracteres inferior a 5; <br>
+  - A rota retorna um erro <code>422</code> <code>{ "message": "\"name\" must be a string" }</code> ao tentar cadastrar um produto com nome que não seja uma string; <br>
 </details>
 <br>
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `PUT` | Atualiza um produto através do id | http://localhost:3001/products/:id
+| `PUT` | Atualiza um produto através do id | `http://localhost:3001/products/:id`
+
+<details>
+  <summary> A estrutura do body da requisição deverá seguir o padrão abaixo: </summary>
+
+```
+{
+  name: "Novo nome"
+}
+```
+</details>
 
 <details>
   <summary> A resposta da requisição é a seguinte com status 200  </summary>
@@ -161,15 +171,15 @@ npm run test:coverage
 <details></code>
   <summary> A requisição irá falhar nos seguintes casos: </summary>
   - A rota retorna um erro <code>404</code> <code>{ "message": Product not found" }</code> ao tentar atualizar um produto não cadastrado no banco de dados; <br>
-  - A rota retorna um erro <code>400</code> <code>{ "message": "\"name\" is required" }</code> ao tentar criar um produto sem o campo nome; <br>
-  - A rota retorna um erro <code>422</code> <code>{ "message": "\"name\" length must be at least 5 characters long" }</code> ao tentar criar um produto com nome com quantidade de caracteres inferior a 5; <br>
-  - A rota retorna um erro <code>422</code> <code>{ "message": "\"name\" must be a string" }</code> ao tentar criar um produto com nome que não seja uma string; <br>
+  - A rota retorna um erro <code>400</code> <code>{ "message": "\"name\" is required" }</code> ao tentar atualizar um produto sem o campo nome; <br>
+  - A rota retorna um erro <code>422</code> <code>{ "message": "\"name\" length must be at least 5 characters long" }</code> ao tentar atualizar um produto com o campo nome com quantidade de caracteres inferior a 5; <br>
+  - A rota retorna um erro <code>422</code> <code>{ "message": "\"name\" must be a string" }</code> ao tentar atualizar um produto com o campo nome não sendo uma string; <br>
 </details>
 <br>
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `DELETE` | Deleta um produto através do id | http://localhost:3001/products/:id
+| `DELETE` | Deleta um produto através do id | `http://localhost:3001/products/:id`
 
 * A resposta da requisição é 204 e sem body em caso de sucesso
 
@@ -184,7 +194,7 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `GET` | Retorna uma lista de vendas cadastradas | http://localhost:3001/sales
+| `GET` | Retorna uma lista de vendas cadastradas | `http://localhost:3001/sales`
 
 <details>
   <summary> A resposta da requisição é a seguinte com status 200  </summary>
@@ -206,7 +216,7 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `GET` | Retorna uma venda através do id | http://localhost:3001/sales/:id
+| `GET` | Retorna uma venda através do id | `http://localhost:3001/sales/:id`
 
 <details>
   <summary> A resposta da requisição é a seguinte com status 200  </summary>
@@ -231,7 +241,7 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `POST` | Realiza o cadastro de uma venda | http://localhost:3001/sales
+| `POST` | Realiza o cadastro de uma venda | `http://localhost:3001/sales`
 
 <details>
   <summary> A estrutura do body da requisição deverá seguir o padrão abaixo:  </summary>
@@ -241,7 +251,8 @@ npm run test:coverage
   {
     "productId": 1,
     "quantity": 5
-  }
+  },
+  ...
 ]
 ```
 </details>
@@ -256,7 +267,8 @@ npm run test:coverage
     {
       "productId": 1,
       "quantity": 5
-    }
+    },
+    ...
   ]
 }
 ```
@@ -274,7 +286,7 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `PUT` | Atualiza a quantidade de um produto de uma venda | http://localhost:3001/sales/:saleId/products/:productId/quantity
+| `PUT` | Atualiza a quantidade de um produto de uma venda | `http://localhost:3001/sales/:saleId/  products/:productId/quantity`
 
 <details>
   <summary> A estrutura do body da requisição deverá seguir o padrão abaixo:  </summary>
@@ -310,7 +322,7 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `DELETE` | Deleta uma venda através do id | http://localhost:3001/sales/:id
+| `DELETE` | Deleta uma venda através do id | `http://localhost:3001/sales/:id`
 
 * A resposta da requisição é 204 e sem body em caso de sucesso
 
