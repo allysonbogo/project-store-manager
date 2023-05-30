@@ -101,6 +101,30 @@ describe('Teste de unidade do service de produtos', function () {
     });
   });
 
+  describe('Buscando um produto a partir do seu nome', function () {
+    it('deve responder com 200 e os dados do produto', async function () {
+      // arrange
+      sinon.stub(productsModel, 'findByName').resolves(products[0]);
+      
+      // act
+      const result = await productsService.findByName('mart');
+
+      // assert
+      expect(result).to.deep.equal(products[0]);
+    });
+
+    it('deve retornar um array vazio ao passar um nome que não existe', async function () {
+      // arrange
+      sinon.stub(productsModel, 'findByName').resolves([]);
+     
+      // act
+      const result = await productsService.findByName('xyz');
+      
+      // assert
+      expect(result).to.deep.equal([]);
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });
