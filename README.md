@@ -1,5 +1,5 @@
 # Store Manager
-###### by _[Allyson Belli Bogo](https://www.linkedin.com/in/allysonbogo/)_
+#### _by [Allyson Belli Bogo](https://www.linkedin.com/in/allysonbogo/)_
 
 ## :page_with_curl: Sobre
 
@@ -35,6 +35,10 @@ Os testes foram desenvolvidos utilizando as ferramentas Mocha, Chai e Sinon, com
 
 Para executar este projeto é necessario ter o Docker instalado.
 
+<details>
+  <summary> Passo a passo </summary>
+  <br>
+
 1. Clone o repositório em uma pasta de preferência
 
 ```
@@ -53,7 +57,6 @@ npm install
 docker-compose up -d
 ```
 4. O servidor será inicializado juntamente com a orquestração do docker. Para visualização da interface da API podem ser utilizados o Thunder Client, Postman, Insomnia ou alguma outra ferramenta de sua preferência
-<br>
 
 5. Para testar o projeto use os seguintes scripts no terminal em que o container foi orquestrado
 
@@ -64,11 +67,15 @@ npm run test:mocha
 ```
 npm run test:coverage
 ```
+</details>
 
 
 ## 📚 Documentação (endpoints)
 
 ### :package: Products
+<details>
+  <summary> Rotas </summary>
+  <br>
 
 | Método | Funcionalidade | URL |
 |---|---|---|
@@ -187,10 +194,14 @@ npm run test:coverage
   <summary> A requisição irá falhar nos seguintes casos: </summary>
   - É disparado o erro <code>404</code> <code>{ "message": "Product not found" }</code> caso o produto não esteja cadastrado no banco de dados; <br>
 </details>
-<br>
+</details>
 
 
 ### :moneybag: Sales
+
+<details>
+  <summary> Rotas </summary>
+  <br>
 
 | Método | Funcionalidade | URL |
 |---|---|---|
@@ -330,4 +341,7 @@ npm run test:coverage
   <summary> A requisição irá falhar nos seguintes casos: </summary>
   - A rota retorna um erro <code>404</code> <code>{ "message": "Sale not found" }</code> caso a venda não esteja cadastrada no banco de dados; <br>
 </details>
+</details>
 <br>
+
+###### _README inspired by [Italo Amaral](https://www.linkedin.com/in/italo-rockenbach-594082132/)_
