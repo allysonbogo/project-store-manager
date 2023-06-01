@@ -3,7 +3,7 @@
 
 ## :page_with_curl: Sobre
 
-O projeto consolida a utilização da ferramenta Docker, Arquitetura de Software seguindo o modelo MSC e a criação de APIs RESTful com CRUD completo. Como desafio, foi criada uma API CRUD de uma loja, em que é possível ler, criar, editar e deletar produtos e vendas do banco de dados.
+O projeto consolida a utilização das ferramentas Docker, MySQL, Node.js e Arquitetura de Software seguindo o modelo MSC para a criação de uma API RESTful com CRUD completo. Como desafio, foi construída uma API CRUD de uma loja online, em que é possível ler, criar, editar e deletar produtos e vendas do banco de dados.
 
 Este projeto utiliza o banco de dados relacional MySQL, e para manipulá-lo fizemos uso da biblioteca mysql/promise para o Node.js, que fornece uma interface baseada em promessas para executar consultas e interagir com um banco de dados MySQL.
 
@@ -82,7 +82,7 @@ npm run test:coverage
 | `GET` | Retorna uma lista de produtos cadastrados | `http://localhost:3001/products`
 
 <details>
-  <summary> A resposta da requisição é a seguinte com status 200  </summary>
+  <summary> A resposta da requisição é a seguinte com <code>status 200</code>: </summary>
   
 ```
 [
@@ -98,10 +98,10 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `GET` | Retorna um produto através do id | `http://localhost:3001/products/:id`
+| `GET` | Retorna um produto a partir do id | `http://localhost:3001/products/:id`
 
 <details>
-  <summary> A resposta da requisição é a seguinte com status 200  </summary>
+  <summary> A resposta da requisição é a seguinte com <code>status 200</code>: </summary>
   
 ```
 {
@@ -126,13 +126,13 @@ npm run test:coverage
 
 ```
 {
-  name: "Elemento X"
+  "name": "Elemento X"
 }
 ```
 </details>
 
 <details>
-  <summary> A resposta da requisição é a seguinte com status 201  </summary>
+  <summary> A resposta da requisição é a seguinte com <code>status 201</code>: </summary>
   
 ```
 {
@@ -145,27 +145,27 @@ npm run test:coverage
 <details>
   <summary> A requisição irá falhar nos seguintes casos: </summary>
   - A rota retorna um erro <code>400</code> <code>{ "message": "\"name\" is required" }</code> ao tentar cadastrar um produto sem o campo nome; <br>
-  - A rota retorna um erro <code>422</code> <code>{ "message": "\"name\" length must be at least 5 characters long" }</code> ao tentar cadastrar um produto com nome com quantidade de caracteres inferior a 5; <br>
-  - A rota retorna um erro <code>422</code> <code>{ "message": "\"name\" must be a string" }</code> ao tentar cadastrar um produto com nome que não seja uma string; <br>
+  - A rota retorna um erro <code>422</code> <code>{ "message": "\"name\" length must be at least 5 characters long" }</code> ao tentar cadastrar um produto com o campo nome com quantidade de caracteres inferior a 5; <br>
+  - A rota retorna um erro <code>422</code> <code>{ "message": "\"name\" must be a string" }</code> ao tentar cadastrar um produto com o campo nome não sendo uma string; <br>
 </details>
 <br>
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `PUT` | Atualiza um produto através do id | `http://localhost:3001/products/:id`
+| `PUT` | Atualiza um produto a partir do id | `http://localhost:3001/products/:id`
 
 <details>
   <summary> A estrutura do body da requisição deverá seguir o padrão abaixo: </summary>
 
 ```
 {
-  name: "Novo nome"
+  "name": "Novo nome"
 }
 ```
 </details>
 
 <details>
-  <summary> A resposta da requisição é a seguinte com status 200  </summary>
+  <summary> A resposta da requisição é a seguinte com <code>status 200</code>: </summary>
   
 ```
 {
@@ -186,13 +186,13 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `DELETE` | Deleta um produto através do id | `http://localhost:3001/products/:id`
+| `DELETE` | Deleta um produto a partir do id | `http://localhost:3001/products/:id`
 
-* A resposta da requisição é 204 e sem body em caso de sucesso
+* A resposta da requisição é <code>204</code> e sem body em caso de sucesso
 
 <details>
   <summary> A requisição irá falhar nos seguintes casos: </summary>
-  - É disparado o erro <code>404</code> <code>{ "message": "Product not found" }</code> caso o produto não esteja cadastrado no banco de dados; <br>
+  - É disparado o erro <code>404</code> <code>{ "message": "Product not found" }</code>, caso o produto não esteja cadastrado no banco de dados; <br>
 </details>
 </details>
 
@@ -208,7 +208,7 @@ npm run test:coverage
 | `GET` | Retorna uma lista de vendas cadastradas | `http://localhost:3001/sales`
 
 <details>
-  <summary> A resposta da requisição é a seguinte com status 200  </summary>
+  <summary> A resposta da requisição é a seguinte com <code>status 200</code>: </summary>
   
 ```
 [
@@ -227,10 +227,10 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `GET` | Retorna uma venda através do id | `http://localhost:3001/sales/:id`
+| `GET` | Retorna uma venda a partir do id | `http://localhost:3001/sales/:id`
 
 <details>
-  <summary> A resposta da requisição é a seguinte com status 200  </summary>
+  <summary> A resposta da requisição é a seguinte com <code>status 200</code>: </summary>
   
 ```
 [
@@ -269,7 +269,7 @@ npm run test:coverage
 </details>
 
 <details>
-  <summary> A resposta da requisição é a seguinte com status 201  </summary>
+  <summary> A resposta da requisição é a seguinte com <code>status 201</code>: </summary>
   
 ```
 {
@@ -300,7 +300,7 @@ npm run test:coverage
 | `PUT` | Atualiza a quantidade de um produto de uma venda | `http://localhost:3001/sales/:saleId/  products/:productId/quantity`
 
 <details>
-  <summary> A estrutura do body da requisição deverá seguir o padrão abaixo:  </summary>
+  <summary> A estrutura do body da requisição deverá seguir o padrão abaixo: </summary>
   
 ```
 {
@@ -310,7 +310,7 @@ npm run test:coverage
 </details>
 
 <details>
-  <summary> A resposta da requisição é a seguinte com status 200  </summary>
+  <summary> A resposta da requisição é a seguinte com <code>status 200</code>: </summary>
   
 ```
 {
@@ -333,13 +333,13 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `DELETE` | Deleta uma venda através do id | `http://localhost:3001/sales/:id`
+| `DELETE` | Deleta uma venda a partir do id | `http://localhost:3001/sales/:id`
 
-* A resposta da requisição é 204 e sem body em caso de sucesso
+* A resposta da requisição é <code>204</code> e sem body em caso de sucesso
 
 <details>
   <summary> A requisição irá falhar nos seguintes casos: </summary>
-  - A rota retorna um erro <code>404</code> <code>{ "message": "Sale not found" }</code> caso a venda não esteja cadastrada no banco de dados; <br>
+  - A rota retorna um erro <code>404</code> <code>{ "message": "Sale not found" }</code>, caso a venda não esteja cadastrada no banco de dados; <br>
 </details>
 </details>
 <br>
