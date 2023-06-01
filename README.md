@@ -33,7 +33,7 @@ Os testes foram desenvolvidos utilizando as ferramentas Mocha, Chai e Sinon, com
 
 ## ⚙️ Como Executar
 
-Para executar este projeto é necessario ter o Docker instalado.
+> :warning: _É necessário ter o Docker instalado para executar este projeto_
 
 <details>
   <summary> Passo a passo </summary>
